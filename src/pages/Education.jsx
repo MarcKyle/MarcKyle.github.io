@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import uclmlogo from '../assets/Institution/UCLM.png';
 import sanhslogo from '../assets/Institution/SANHS.png';
 import sceslogo from '../assets/Institution/SCES.png';
@@ -170,8 +170,8 @@ export default function Education() {
                       </div>
                     </div>
                   </div>
-                  
-                  {/* Achievements Section - Only renders if achievements exist */}
+
+                  {/* Achievements Section */}
                   {edu.achievements && edu.achievements.length > 0 && (
                     <div className="mt-6 bg-gray-50 dark:bg-gray-700/50 p-6 rounded-xl">
                       <h5 className="font-bold text-gray-800 dark:text-gray-200 mb-4 flex items-center">
@@ -244,4 +244,4 @@ export default function Education() {
       </div>
     </section>
   )
-}
+};
