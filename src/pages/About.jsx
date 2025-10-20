@@ -1,5 +1,6 @@
 import React from 'react'
 import { socialLinks } from '../data/socialLinks'
+import profile from '../assets/profile/main.png'
 
 export default function About() {
   return (
@@ -15,7 +16,7 @@ export default function About() {
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
                 <img
-                  src="https://i.pinimg.com/474x/8a/5a/82/8a5a82fcf1f78395f2c7a21bf30de2ec.jpg"
+                  src={profile}
                   alt="Marc Kyle Jimena"
                   className="relative w-full max-w-xs rounded-2xl shadow-2xl mx-auto group-hover:scale-105 transition-transform duration-300"
                 />

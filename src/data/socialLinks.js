@@ -1,20 +1,20 @@
 export const socialLinks = [
   {
-    name: 'Steam',
-    url: 'https://steamcommunity.com/id/_MonDY_/',
-    icon: 'fab fa-steam',
+    name: 'Facebook',
+    url: 'https://www.facebook.com/jimena.marckyle',
+    icon: 'fab fa-facebook',
     hoverColor: 'hover:text-blue-600'
   },
   {
-    name: 'Discord',
-    url: 'https://discordapp.com/users/447286089716072448',
-    icon: 'fab fa-discord',
-    hoverColor: 'hover:text-indigo-600'
+    name: 'Instagram',
+    url: 'https://www.instagram.com/jimena.marckyle/',
+    icon: 'fab fa-instagram',
+    hoverColor: 'hover:text-pink-600'
   },
   {
-    name: 'GitHub',
-    url: 'https://github.com/MarcKyle',
-    icon: 'fab fa-github',
-    hoverColor: 'hover:text-gray-900'
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/marc-kyle-jimena-35711338a/',
+    icon: 'fab fa-linkedin',
+    hoverColor: 'hover:text-blue-700'
   }
 ]

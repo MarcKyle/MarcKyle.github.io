@@ -1,13 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import profile from '../assets/profile/main.png'
 
 export default function Hero() {
   return (
     <header className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 dark:from-blue-900 dark:via-purple-900 dark:to-pink-900 text-white py-24 md:py-32 overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
-        <div className="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse delay-700"></div>
+        <div className="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl -top-48 -left-48 animate-blob"></div>
+        <div className="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl -bottom-48 -right-48 animate-blob animation-delay-2000"></div>
+        <div className="absolute w-96 h-96 bg-white/10 rounded-full blur-3xl top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -45,7 +47,7 @@ export default function Hero() {
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-400 rounded-full blur-xl opacity-50 group-hover:opacity-75 transition-opacity"></div>
               <img
-                src="https://i.pinimg.com/474x/8a/5a/82/8a5a82fcf1f78395f2c7a21bf30de2ec.jpg"
+                src={profile}
                 alt="Kyle's Profile"
                 className="relative w-64 h-64 md:w-80 md:h-80 rounded-full border-4 border-white/20 shadow-2xl object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -53,6 +55,35 @@ export default function Hero() {
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes blob {
+          0% {
+            transform: translate(0px, 0px) scale(1);
+          }
+          33% {
+            transform: translate(30px, -50px) scale(1.1);
+          }
+          66% {
+            transform: translate(-20px, 20px) scale(0.9);
+          }
+          100% {
+            transform: translate(0px, 0px) scale(1);
+          }
+        }
+
+        .animate-blob {
+          animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+      `}</style>
     </header>
   )
 }

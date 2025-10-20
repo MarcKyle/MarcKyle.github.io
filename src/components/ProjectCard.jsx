@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { getTechColors } from '../utils/techColors'
 
 export default function ProjectCard({ project }) {
   return (
@@ -20,17 +21,22 @@ export default function ProjectCard({ project }) {
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2 text-sm mb-4">
-          {project.tags.map((tag) => (
-            <span 
-              key={tag} 
-              className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full font-medium border border-blue-200 dark:border-blue-800"
-            >
-              {tag}
-            </span>
-          ))}
+          {project.tags.map((tag) => {
+            const colors = getTechColors(tag)
+            return (
+              <span 
+                key={tag} 
+                className={`${colors.bg} ${colors.text} ${colors.border} px-3 py-1 rounded-full font-medium border`}
+              >
+                {tag}
+              </span>
+            )
+          })}
         </div>
         <a 
           href={project.link} 
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium group/link"
         >
           View Project 

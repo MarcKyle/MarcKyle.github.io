@@ -145,24 +145,24 @@ Local State
 
 ## Best Practices Implemented
 
-✅ Single Responsibility Principle
+Single Responsibility Principle
    - Each component does one thing well
 
-✅ DRY (Don't Repeat Yourself)
+DRY (Don't Repeat Yourself)
    - Data centralized in data/ folder
    - Reusable components reduce duplication
 
-✅ Component Composition
+Component Composition
    - Small components compose into larger pages
 
-✅ Props-driven Design
+Props-driven Design
    - Components accept props for customization
 
-✅ Separation of Concerns
+Separation of Concerns
    - Components (UI) separate from Data
    - Pages compose components
 
-✅ Consistent File Organization
+Consistent File Organization
    - components/ - reusable UI
    - pages/ - route components
    - data/ - source data

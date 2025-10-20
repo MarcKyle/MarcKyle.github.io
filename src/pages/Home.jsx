@@ -21,32 +21,6 @@ export default function Home() {
             I'm a Computer Science Undergraduate and aspiring Software Engineer passionate about 
             building innovative solutions. Explore my skills, projects, and get to know more about me.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              to="/about" 
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 font-medium"
-            >
-              <span className="relative z-10">About Me</span>
-            </Link>
-            <Link 
-              to="/skills" 
-              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 font-medium"
-            >
-              My Skills
-            </Link>
-            <Link 
-              to="/projects" 
-              className="group px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full hover:shadow-lg hover:shadow-green-500/50 hover:scale-105 transition-all duration-300 font-medium"
-            >
-              View Projects
-            </Link>
-            <Link 
-              to="/contact" 
-              className="group px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white rounded-full hover:shadow-lg hover:shadow-gray-500/50 hover:scale-105 transition-all duration-300 font-medium"
-            >
-              Contact Me
-            </Link>
-          </div>
         </div>
       </section>
 
