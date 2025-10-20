@@ -1,0 +1,10 @@
+.vite
+node_modules
+dist
+/.cache
+env.local
+*.log
+npm-debug.log*
+.DS_Store
+/.idea
+/.vscode
