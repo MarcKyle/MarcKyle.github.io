@@ -12,24 +12,38 @@ export default function Home() {
       <Hero />
 
       {/* Quick About Preview */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900 transition-colors">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Welcome to My Portfolio</h2>
-          <p className="text-lg max-w-3xl mx-auto mb-8">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-white">
+            Welcome to My <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Portfolio</span>
+          </h2>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto mb-10 text-gray-700 dark:text-gray-300 leading-relaxed">
             I'm a Computer Science Undergraduate and aspiring Software Engineer passionate about 
             building innovative solutions. Explore my skills, projects, and get to know more about me.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link to="/about" className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition">
-              About Me
+            <Link 
+              to="/about" 
+              className="group relative px-8 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-full hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 font-medium"
+            >
+              <span className="relative z-10">About Me</span>
             </Link>
-            <Link to="/skills" className="bg-purple-600 text-white px-6 py-3 rounded-md hover:bg-purple-700 transition">
+            <Link 
+              to="/skills" 
+              className="group px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full hover:shadow-lg hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 font-medium"
+            >
               My Skills
             </Link>
-            <Link to="/projects" className="bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition">
+            <Link 
+              to="/projects" 
+              className="group px-8 py-4 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full hover:shadow-lg hover:shadow-green-500/50 hover:scale-105 transition-all duration-300 font-medium"
+            >
               View Projects
             </Link>
-            <Link to="/contact" className="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-900 transition">
+            <Link 
+              to="/contact" 
+              className="group px-8 py-4 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white rounded-full hover:shadow-lg hover:shadow-gray-500/50 hover:scale-105 transition-all duration-300 font-medium"
+            >
               Contact Me
             </Link>
           </div>
@@ -37,34 +51,52 @@ export default function Home() {
       </section>
 
       {/* Featured Skills Preview */}
-      <section className="py-16 bg-gray-100">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Skills</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+              Featured <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Skills</span>
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-lg">Technologies I work with</p>
+          </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {skills.slice(0, 4).map((skill) => (
               <SkillCard key={skill.name} skill={skill} />
             ))}
           </div>
-          <div className="text-center mt-8">
-            <Link to="/skills" className="text-blue-600 hover:text-blue-800 font-medium text-lg">
-              View All Skills <i className="fas fa-arrow-right ml-1"></i>
+          <div className="text-center mt-12">
+            <Link 
+              to="/skills" 
+              className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-lg group"
+            >
+              View All Skills 
+              <i className="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
             </Link>
           </div>
         </div>
       </section>
 
       {/* Featured Projects Preview */}
-      <section className="py-16 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900 transition-colors">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+              Featured <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Projects</span>
+            </h2>
+            <p className="text-gray-600 dark:text-gray-400 text-lg">Some of my recent work</p>
+          </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {projects.slice(0, 3).map((project) => (
               <ProjectCard key={project.id} project={project} />
             ))}
           </div>
-          <div className="text-center mt-8">
-            <Link to="/projects" className="text-blue-600 hover:text-blue-800 font-medium text-lg">
-              View All Projects <i className="fas fa-arrow-right ml-1"></i>
+          <div className="text-center mt-12">
+            <Link 
+              to="/projects" 
+              className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 font-medium text-lg group"
+            >
+              View All Projects 
+              <i className="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
             </Link>
           </div>
         </div>
