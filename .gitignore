@@ -1,10 +1,46 @@
-.vite
+# Dependencies
 node_modules
+/.pnp
+.pnp.js
+
+# Build outputs
 dist
+.vite
 /.cache
-env.local
+build
+
+# Environment variables (NEVER commit these!)
+.env
+.env.local
+.env.development
+.env.development.local
+.env.production
+.env.production.local
+
+# Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDE
 /.idea
 /.vscode
+*.swp
+*.swo
+*~
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+.cache
+.temp
+.tmp

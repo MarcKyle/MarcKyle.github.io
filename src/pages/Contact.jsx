@@ -1,30 +1,67 @@
 import React, { useState } from 'react'
 import { socialLinks } from '../data/socialLinks'
 
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001'
+
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState(null) // 'success', 'error', or null
 
   function handleChange(e) {
     const { name, value } = e.target
     setForm((f) => ({ ...f, [name]: value }))
+    // Clear status when user starts typing again
+    if (submitStatus) setSubmitStatus(null)
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault()
     const { name, email, message } = form
-    let valid = true
     
-    if (!name) valid = false
-    if (!email || !email.includes('@')) valid = false
-    if (!message) valid = false
-
-    if (!valid) {
-      window.alert('Please fill in all required fields correctly.')
+    // Basic client-side validation
+    if (!name || name.trim().length < 2) {
+      window.alert('Please enter a valid name (at least 2 characters).')
+      return
+    }
+    if (!email || !email.includes('@')) {
+      window.alert('Please enter a valid email address.')
+      return
+    }
+    if (!message || message.trim().length < 10) {
+      window.alert('Please enter a message (at least 10 characters).')
       return
     }
 
-    window.alert('Thank you for your message! I will get back to you soon.')
-    setForm({ name: '', email: '', subject: '', message: '' })
+    setIsSubmitting(true)
+    setSubmitStatus(null)
+
+    try {
+      const response = await fetch(`${API_URL}/api/email/send`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(form),
+      })
+
+      const data = await response.json()
+
+      if (response.ok && data.success) {
+        setSubmitStatus('success')
+        setForm({ name: '', email: '', subject: '', message: '' })
+        window.alert('✅ Thank you for your message! I will get back to you soon.')
+      } else {
+        setSubmitStatus('error')
+        window.alert(`❌ ${data.message || 'Failed to send message. Please try again later.'}`)
+      }
+    } catch (error) {
+      console.error('Error sending email:', error)
+      setSubmitStatus('error')
+      window.alert('❌ Unable to send message. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -55,9 +92,10 @@ export default function Contact() {
                   placeholder="Your name"
                   className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
-              
+
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Email *
@@ -71,6 +109,7 @@ export default function Contact() {
                   placeholder="your.email@example.com"
                   className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -86,6 +125,7 @@ export default function Contact() {
                   onChange={handleChange}
                   placeholder="Message subject"
                   className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors"
+                  disabled={isSubmitting}
                 />
               </div>
               
@@ -99,18 +139,31 @@ export default function Contact() {
                   value={form.message}
                   onChange={handleChange}
                   placeholder="Your message..."
-                  rows="6"
+                  rows="8"
                   className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 transition-colors resize-none"
                   required
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
               
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-4 rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 custom-button"
+                className={`w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-4 rounded-lg font-medium hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105 transition-all duration-300 custom-button ${
+                  isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+                }`}
+                disabled={isSubmitting}
               >
-                <i className="fas fa-paper-plane mr-2"></i>
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <i className="fas fa-spinner fa-spin mr-2"></i>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <i className="fas fa-paper-plane mr-2"></i>
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           </div>
