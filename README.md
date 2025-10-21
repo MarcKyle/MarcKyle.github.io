@@ -1,13 +1,13 @@
 # Marc Kyle Jimena Portfolio
 
-A modern, responsive portfolio website built with React and featuring a secure backend for the contact form.
+A modern, responsive portfolio website built with React.
 
 ## ✨ Features
 
 - 🎨 Modern, responsive design with dark mode
-- 📧 Functional contact form with EmailJS integration
-- 🔒 Secure backend with input validation and sanitization
-- 🛡️ Security features: CORS, rate limiting, XSS protection
+- � Project showcase
+- 🎓 Education and skills sections
+- 🌐 Social media integration
 - ⚡ Fast and optimized with Vite
 - 📱 Mobile-friendly interface
 
@@ -16,7 +16,6 @@ A modern, responsive portfolio website built with React and featuring a secure b
 ### Prerequisites
 - Node.js (v16 or higher)
 - npm or yarn
-- EmailJS account (for contact form)
 
 ### Frontend Setup
 
