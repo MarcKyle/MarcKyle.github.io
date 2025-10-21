@@ -1,8 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { socialLinks } from '../data/socialLinks'
 import cvFile from '../assets/documents/Curriculum_Vitae_JIMENA_MARC_KYLE.pdf'
 
 export default function Contact() {
+  const [emailHovered, setEmailHovered] = useState(false)
+  const [emailCopied, setEmailCopied] = useState(false)
+  const email = 'jimena.marckyle123@gmail.com'
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email)
+    setEmailCopied(true)
+    setTimeout(() => setEmailCopied(false), 2000)
+  }
 
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
@@ -19,14 +28,42 @@ export default function Contact() {
             <h3 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">Get In Touch</h3>
             
             <div className="space-y-6">
-              <div className="flex items-start group">
-                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                  <i className="fas fa-envelope text-xl text-blue-600 dark:text-blue-400"></i>
+              <div 
+                className="flex items-start group relative overflow-hidden"
+                onMouseEnter={() => setEmailHovered(true)}
+                onMouseLeave={() => setEmailHovered(false)}
+              >
+                <div className={`flex items-center transition-all duration-500 ease-in-out ${
+                  emailHovered ? 'pr-4' : 'pr-0'
+                }`}>
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                    <i className="fas fa-envelope text-xl text-blue-600 dark:text-blue-400"></i>
+                  </div>
+                  
+                  <div className={`ml-4 transition-all duration-500 ease-in-out ${
+                    emailHovered ? 'opacity-100 max-w-md' : 'opacity-0 max-w-0'
+                  } overflow-hidden`}>
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-1 whitespace-nowrap">Email</h4>
+                    <div className="flex items-center gap-3">
+                      <p className="text-gray-600 dark:text-gray-400 whitespace-nowrap">{email}</p>
+                      <button
+                        onClick={handleCopyEmail}
+                        className="bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-200 dark:hover:bg-blue-900/50 transition-colors flex items-center gap-1.5"
+                        title="Copy email"
+                      >
+                        <i className={`fas ${emailCopied ? 'fa-check' : 'fa-copy'} text-xs`}></i>
+                        {emailCopied ? 'Copied!' : 'Copy'}
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-gray-900 dark:text-white mb-1">Email</h4>
-                  <p className="text-gray-600 dark:text-gray-400">Available on request</p>
-                </div>
+                
+                {!emailHovered && (
+                  <div className="ml-4">
+                    <h4 className="font-bold text-gray-900 dark:text-white mb-1">Email</h4>
+                    <p className="text-gray-600 dark:text-gray-400">Hover to reveal</p>
+                  </div>
+                )}
               </div>
               
               <div className="flex items-start group">
