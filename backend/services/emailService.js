@@ -11,7 +11,7 @@ class EmailService {
     this.publicKey = process.env.EMAILJS_PUBLIC_KEY;
     this.privateKey = process.env.EMAILJS_PRIVATE_KEY;
     // Use private API endpoint for server-side requests
-    this.apiUrl = 'https://api.emailjs.com/api/v1.0/email/send';
+    this.apiUrl = process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map(origin => origin.trim()): [''];
 
     // Validate configuration on initialization
     this.validateConfig();
