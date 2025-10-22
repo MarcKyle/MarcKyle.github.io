@@ -1,6 +1,6 @@
 import React from 'react'
-import { projects } from '../data/projects'
-import ProjectCard from '../components/ProjectCard'
+import { projects } from '@constants'
+import { ProjectCard } from '@components/ui'
 
 export default function Projects() {
   return (

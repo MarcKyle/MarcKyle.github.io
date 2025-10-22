@@ -1,10 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Hero from '../components/Hero'
-import { skills } from '../data/skills'
-import { projects } from '../data/projects'
-import SkillCard from '../components/SkillCard'
-import ProjectCard from '../components/ProjectCard'
+import { Hero } from '@components/features'
+import { skills, projects } from '@constants'
+import { SkillCard, ProjectCard } from '@components/ui'
 
 export default function Home() {
   return (

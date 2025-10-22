@@ -1,6 +1,6 @@
 import React from 'react'
-import { socialLinks } from '../data/socialLinks'
-import profile from '../assets/profile/main.png'
+import { socialLinks } from '@constants'
+import profile from '@assets/profile/main.png'
 
 export default function About() {
   return (

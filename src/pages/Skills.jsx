@@ -1,6 +1,6 @@
 import React from 'react'
-import { skills } from '../data/skills'
-import SkillCard from '../components/SkillCard'
+import { skills } from '@constants'
+import { SkillCard } from '@components/ui'
 
 export default function Skills() {
   return (

@@ -1,0 +1,6 @@
+/* Main stylesheet - imports all modular styles */
+
+@import './base.css';
+@import './scrollbar.css';
+@import './components.css';
+@import './animations.css';

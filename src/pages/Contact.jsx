@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { socialLinks } from '../data/socialLinks'
-import cvFile from '../assets/documents/Curriculum_Vitae_JIMENA_MARC_KYLE.pdf'
+import { socialLinks } from '@constants'
+import cvFile from '@assets/documents/Curriculum_Vitae_JIMENA_MARC_KYLE.pdf'
 
 export default function Contact() {
   const [emailHovered, setEmailHovered] = useState(false)

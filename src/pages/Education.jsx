@@ -1,98 +1,9 @@
-import React from 'react';
-import uclmlogo from '../assets/Institution/UCLM.png';
-import sanhslogo from '../assets/Institution/SANHS.png';
-import sceslogo from '../assets/Institution/SCES.png';
-import beslogo from '../assets/Institution/BES.png';
-import peslogo from '../assets/Institution/PES.png';
+import React from 'react'
+import { educationData, certifications } from '@constants'
+import { useModal } from '@hooks'
 
 export default function Education() {
-  const education = [
-    {
-      id: 1,
-      institution: 'University of Cebu',
-      degree: 'Bachelor of Science in Computer Science',
-      period: '2022 - Present',
-      location: 'AC Cortes Ave, Cebu City, Philippines',
-      image: uclmlogo,
-      website: 'https://www.uc.edu.ph/',
-      achievements: [
-        'Relevant coursework in Data Structures, Algorithms, and Software Engineering',
-        'Attained Multiple Dean\'s Lister Awards for Academic Excellence',
-      ]
-    },
-    {
-        id: 2,
-        institution: 'San Agustin National High School',
-        degree: 'Information and Communication Technology (ICT) Strand',
-        period: '2020 - 2022',
-        location: 'San Agustin, Poblacion, Sagbayan, Bohol',
-        image: sanhslogo,
-        website: 'https://home.sanagustinnhs.net/',
-        achievements: [
-          'Graduated with honors',
-        ]
-    },
-    {
-        id: 3,
-        institution: 'San Agustin National High School',
-        degree: 'Junior High School',
-        period: '2016 - 2020',
-        location: 'San Agustin, Poblacion, Sagbayan, Bohol',
-        image: sanhslogo,
-        website: 'https://home.sanagustinnhs.net/',
-        achievements: [
-          'Graduated with honors',
-        ]
-    },
-    {
-        id: 4,
-        institution: 'Sagbayan Central Elementary School',
-        degree: 'Elementary Graduate',
-        period: '2015 - 2016',
-        location: 'Poblacion, Sagbayan, Bohol',
-        image: sceslogo,
-        website: 'https://www.facebook.com/p/Sagbayan-Central-Elementary-School-100070990836821/',
-    },
-    {
-        id: 5,
-        institution: 'Bankal Elementary School',
-        degree: 'Elementary Transfer',
-        period: '2013 - 2015',
-        location: 'Bankal, Lapu-Lapu City, Cebu',
-        image: beslogo,
-        website: 'https://www.facebook.com/p/Administrator-Page-of-Bankal-Elementary-School-DepEd-Region-7-100064119214031/',
-    },
-    {
-        id: 6,
-        institution: 'Pusok Elementary School',
-        degree: 'Elementary Transfer',
-        period: '2010 - 2013',
-        location: 'Pusok, Lapu-Lapu City, Cebu',
-        image: peslogo,
-        website: 'https://www.facebook.com/p/Pusok-Elementary-School-Lapu-Lapu-City-Division-61553965151767/',
-    },
-  ]
-
-  const certifications = [
-    {
-      id: 1,
-      name: 'React Development',
-      issuer: 'Self-Learning & Projects',
-      year: '2024'
-    },
-    {
-      id: 2,
-      name: 'Mobile App Development',
-      issuer: 'React Native & Expo',
-      year: '2024'
-    },
-    {
-      id: 3,
-      name: 'Full-Stack Development',
-      issuer: 'Various Online Courses',
-      year: '2023-2024'
-    }
-  ]
+  const { isOpen: modalOpen, activeContent: activePaper, openModal, closeModal } = useModal()
 
   return (
     <section className="py-16 bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors">
@@ -115,7 +26,7 @@ export default function Education() {
             {/* Vertical Timeline Line */}
             <div className="absolute left-5 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-600 hidden md:block"></div>
             
-            {education.map((edu, index) => (
+            {educationData.map((edu, index) => (
               <div key={edu.id} className="relative mb-12 md:pl-20 group">
                 {/* Timeline Dot */}
                 <div className="absolute left-1 md:left-3 top-8 w-5 h-5 bg-blue-600 border-4 border-white dark:border-gray-900 rounded-full shadow-lg group-hover:scale-150 group-focus-within:scale-150 transition-transform duration-300 z-10"></div>
@@ -205,18 +116,42 @@ export default function Education() {
           
           <div className="grid md:grid-cols-2 gap-6">
             {certifications.map((cert) => (
-              <div key={cert.id} className="group bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg border-l-4 border-purple-600 dark:border-purple-500 hover:shadow-2xl hover:-translate-y-1 hover:scale-105 focus-within:scale-105 transition-all duration-300">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
-                    <i className="fas fa-award text-purple-600 dark:text-purple-400 text-xl"></i>
+              <div key={cert.id} className="group bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden hover:shadow-2xl hover:-translate-y-1 hover:scale-105 focus-within:scale-105 transition-all duration-300">
+                {/* Certificate Image Container */}
+                <div className="relative h-64 bg-gray-100 dark:bg-gray-700 overflow-hidden">
+                  <img 
+                    src={cert.image} 
+                    alt={cert.name}
+                    className="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+                    onClick={() => openModal(cert)}
+                    style={{ cursor: 'pointer' }}
+                  />
+                  {/* Overlay on hover */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                    <button 
+                      onClick={() => openModal(cert)}
+                      className="opacity-0 group-hover:opacity-100 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-white px-6 py-3 rounded-lg font-semibold shadow-lg transform scale-90 group-hover:scale-100 transition-all duration-300"
+                    >
+                      <i className="fas fa-expand-alt mr-2"></i>
+                      View Full Size
+                    </button>
                   </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">{cert.name}</h4>
-                    <p className="text-gray-600 dark:text-gray-400 mb-1">{cert.issuer}</p>
-                    <p className="text-sm text-gray-500 dark:text-gray-500 flex items-center">
-                      <i className="fas fa-calendar mr-2"></i>
-                      {cert.year}
-                    </p>
+                </div>
+                
+                {/* Certificate Info */}
+                <div className="p-6 border-t-4 border-purple-600 dark:border-purple-500">
+                  <div className="flex items-start">
+                    <div className="flex-shrink-0 w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition-transform">
+                      <i className="fas fa-award text-purple-600 dark:text-purple-400 text-xl"></i>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-lg text-gray-900 dark:text-white mb-2">{cert.name}</h4>
+                      <p className="text-gray-600 dark:text-gray-400 mb-1">{cert.issuer}</p>
+                      <p className="text-sm text-gray-500 dark:text-gray-500 flex items-center">
+                        <i className="fas fa-calendar mr-2"></i>
+                        {cert.year}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -241,7 +176,70 @@ export default function Education() {
             </p>
           </div>
         </div>
+        {/* Modal overlay */}
+        {modalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop: blur + dim */}
+            <div
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={closeModal}
+              aria-hidden="true"
+            />
+
+            {/* Modal panel */}
+            <div className="relative max-w-5xl w-full mx-4">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden border border-gray-200 dark:border-gray-700">
+                {/* Modal Header */}
+                <div className="flex items-start justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-gray-800 dark:to-gray-800">
+                  <div>
+                    <h4 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">{activePaper?.name}</h4>
+                    <p className="text-gray-600 dark:text-gray-400">{activePaper?.issuer} • {activePaper?.year}</p>
+                  </div>
+                  <button 
+                    onClick={closeModal} 
+                    aria-label="Close" 
+                    className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 bg-white dark:bg-gray-700 rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Modal Body */}
+                <div className="p-6 bg-gray-50 dark:bg-gray-800">
+                  <div className="w-full max-h-[70vh] flex items-center justify-center overflow-auto bg-white dark:bg-gray-900 rounded-lg shadow-inner">
+                    {activePaper && (
+                      <img 
+                        src={activePaper.image} 
+                        alt={activePaper.name} 
+                        className="max-h-full max-w-full object-contain p-4" 
+                      />
+                    )}
+                  </div>
+                </div>
+
+                {/* Modal Footer */}
+                <div className="p-4 bg-gray-100 dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    <i className="fas fa-info-circle mr-2"></i>
+                    Press ESC to close
+                  </p>
+                  <button
+                    onClick={closeModal}
+                    className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg font-semibold transition-colors"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
 };
+
+// Modal portal markup injected at end of file for bundlers that support JSX in same file
+// We add the modal just after the component to avoid duplicating state logic in other files.

@@ -1,0 +1,11 @@
+/* Base styles and global configurations */
+
+/* Smooth scrolling for navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Dark mode class configuration */
+.dark {
+  color-scheme: dark;
+}
